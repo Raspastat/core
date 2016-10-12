@@ -26,6 +26,7 @@ public class Controller {
         new Thread() {
             public void run() {
                 while (enabled) {
+                    thermometer.updateTemp();
                     if (thermometer.getTemp() < (targetTemp - tolerance) && thermometer.getTemp() > (targetTemp + tolerance)) {
                         if (thermometer.getTemp() < targetTemp) {
                             thermostat.setMode(Thermostat.Mode.HEAT);
