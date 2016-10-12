@@ -1,5 +1,6 @@
 package com.shepherdjerred.thermostat.core;
 
+import com.shepherdjerred.thermostat.core.pi.GpioWrapper;
 import com.shepherdjerred.thermostat.core.scheduling.Scheduler;
 import com.shepherdjerred.thermostat.core.thermometer.Thermometer;
 import com.shepherdjerred.thermostat.core.theromostat.DormThermostat;
@@ -8,6 +9,7 @@ public class Main {
 
     static void main() {
 
+        new GpioWrapper();
         new Controller(new DormThermostat(), new Thermometer(), new Scheduler(70));
 
         /*

@@ -1,5 +1,7 @@
 package com.shepherdjerred.thermostat.core.theromostat;
 
+import com.shepherdjerred.thermostat.core.pi.GpioWrapper;
+
 public class DormThermostat implements Thermostat {
 
     private Mode mode;
@@ -22,11 +24,17 @@ public class DormThermostat implements Thermostat {
     }
 
     public void updateThermostatSettings() {
-        // Use the current mode & enable the thermostat
-        if (mode == Mode.HEAT) {
-            // Enable heating
+        if (on) {
+            if (mode == Mode.HEAT) {
+                GpioWrapper.getCooling().low();
+                GpioWrapper.getHeating().high();
+            } else {
+                GpioWrapper.getHeating().low();
+                GpioWrapper.getCooling().high();
+            }
         } else {
-            // Enable cooling
+            GpioWrapper.getHeating().low();
+            GpioWrapper.getCooling().low();
         }
     }
 
