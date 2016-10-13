@@ -11,6 +11,7 @@ public class GpioWrapper {
     public GpioWrapper() {
         heating.setShutdownOptions(true, PinState.LOW);
         cooling.setShutdownOptions(true, PinState.LOW);
+        System.out.println("Shutdown options set");
     }
 
     public static GpioController getGpio() {

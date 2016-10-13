@@ -12,6 +12,8 @@ public class Main {
         new GpioWrapper();
         new Controller(new DormThermostat(), new Thermometer(), new Scheduler(70));
 
+        System.out.println("Program started!");
+
         /*
         Updating the temperature
           We'll be updating from two external sources

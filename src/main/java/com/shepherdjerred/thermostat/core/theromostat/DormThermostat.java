@@ -14,11 +14,13 @@ public class DormThermostat implements Thermostat {
 
     public void setMode(Mode mode) {
         this.mode = mode;
+        System.out.println("Mode changed to " + mode.toString());
         if (on)
             updateThermostatSettings();
     }
 
     public void setOn(boolean on) {
+        System.out.println("On changed to " + on);
         this.on = on;
         updateThermostatSettings();
     }

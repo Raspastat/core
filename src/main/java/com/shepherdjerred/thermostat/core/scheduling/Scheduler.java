@@ -11,6 +11,7 @@ public class Scheduler {
     public Scheduler(int defaultTemp) {
         this.defaultTemp = defaultTemp;
         loadEntries();
+        System.out.println("Default temp is " + defaultTemp);
     }
 
     public int getDefaultTemp() {
