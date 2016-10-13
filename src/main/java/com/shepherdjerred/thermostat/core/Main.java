@@ -18,7 +18,7 @@ public class Main {
 
     public static void init() {
         gpioWrapper = new GpioWrapper();
-        controller = new Controller(new ConeThermostat(), new DHT11(3, 500), new Scheduler(75));
+        controller = new Controller(new ConeThermostat(), new DHT11(3, 500), new Scheduler(73));
     }
 
     public static Controller getController() {

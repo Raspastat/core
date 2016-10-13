@@ -19,7 +19,7 @@ public class Controller {
         this.thermometer = thermometer;
         this.scheduler = scheduler;
         targetTemp = scheduler.getDefaultTemp();
-        this.tolerance = 3;
+        this.tolerance = 2;
         this.updatePeriod = 1500;
         setEnabled(true);
     }
