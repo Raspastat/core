@@ -6,10 +6,10 @@ import com.shepherdjerred.thermostat.core.theromostat.Thermostat;
 
 public class Controller {
 
-    private boolean enabled = true;
-    private int tolerance = 3;
-    private long updatePeriod = 1500;
-    private int targetTemp;
+    private boolean enabled;
+    private int tolerance;
+    private long updatePeriod;
+    private float targetTemp;
     private Thermostat thermostat;
     private Thermometer thermometer;
     private Scheduler scheduler;
@@ -19,46 +19,96 @@ public class Controller {
         this.thermometer = thermometer;
         this.scheduler = scheduler;
         targetTemp = scheduler.getDefaultTemp();
-        thermometer.enable();
-        thermostat.setOn(false);
-        runTempLoop();
+        this.tolerance = 3;
+        this.updatePeriod = 1500;
+        setEnabled(true);
     }
 
     private void runTempLoop() {
         new Thread() {
             public void run() {
                 while (enabled) {
+
                     thermometer.updateTemp();
-                    if (thermometer.getTemp() < (targetTemp - tolerance) || thermometer.getTemp() > (targetTemp + tolerance)) {
-                        if (thermometer.getTemp() < targetTemp) {
-                            if (thermostat.getMode() != Thermostat.Mode.HEAT || !thermostat.isOn()) {
-                                thermostat.setMode(Thermostat.Mode.HEAT);
-                                thermostat.setOn(true);
-                            }
-                        } else {
-                            if (thermostat.getMode() != Thermostat.Mode.COOL || !thermostat.isOn()) {
+
+                    if (Math.abs((thermometer.getTemp() - targetTemp)) > tolerance) {
+                        if (thermometer.getTemp() > targetTemp) {
+                            // It's too hot
+                            if (thermostat.getMode() != Thermostat.Mode.COOL)
                                 thermostat.setMode(Thermostat.Mode.COOL);
-                                thermostat.setOn(true);
-                            }
+                        } else {
+                            // It's too cold
+                            if (thermostat.getMode() != Thermostat.Mode.HEAT)
+                                thermostat.setMode(Thermostat.Mode.HEAT);
                         }
-                        // Wait 5 minutes before checking temperature again
-                        // We should do a dynamic wait depending on the difference between the current & desired temps
+
                         try {
                             Thread.sleep(updatePeriod);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
+
                     } else {
-                        // The temperature is fine for now, check back after some time
+
+                        // The temperature is fine for now, turn it off, and check back after some time
+                        if (thermostat.getMode() != Thermostat.Mode.OFF)
+                            thermostat.setMode(Thermostat.Mode.OFF);
+
                         try {
                             Thread.sleep(updatePeriod);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
+
                     }
                 }
             }
         }.start();
     }
 
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+        if (enabled)
+            runTempLoop();
+    }
+
+    public int getTolerance() {
+        return tolerance;
+    }
+
+    public void setTolerance(int tolerance) {
+        this.tolerance = tolerance;
+    }
+
+    public long getUpdatePeriod() {
+        return updatePeriod;
+    }
+
+    public void setUpdatePeriod(long updatePeriod) {
+        this.updatePeriod = updatePeriod;
+    }
+
+    public float getTargetTemp() {
+        return targetTemp;
+    }
+
+    public void setTargetTemp(float targetTemp) {
+        this.targetTemp = targetTemp;
+    }
+
+    public Thermostat getThermostat() {
+        return thermostat;
+    }
+
+    public Thermometer getThermometer() {
+        return thermometer;
+    }
+
+    public Scheduler getScheduler() {
+        return scheduler;
+    }
 }

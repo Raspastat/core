@@ -18,6 +18,10 @@ public class Scheduler {
         return defaultTemp;
     }
 
+    public void setDefaultTemp(int defaultTemp) {
+        this.defaultTemp = defaultTemp;
+    }
+
     public LinkedList<Entry> getEntries() {
         return entries;
     }

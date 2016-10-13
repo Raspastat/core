@@ -4,7 +4,8 @@ import com.pi4j.wiringpi.Gpio;
 
 public class GpioWrapper {
 
-    public GpioWrapper() {
+    static {
         Gpio.wiringPiSetup();
     }
+
 }

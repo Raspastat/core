@@ -10,15 +10,18 @@ import com.pi4j.wiringpi.GpioUtil;
 
 public class DHT11 implements Thermometer {
 
+    private int pin;
+    private long retryDelay;
     private float temp;
     private float humidity;
     private long lastPoll;
-    private long retryDelay;
     private static final int MAXTIMINGS = 85;
     private int[] dht11_dat = {0, 0, 0, 0, 0};
 
-    public DHT11() {
-        updateTemp();
+    public DHT11(int pin, long retryDelay) {
+        this.pin = pin;
+        this.retryDelay = retryDelay;
+        enable();
     }
 
     public void enable() {
@@ -78,22 +81,11 @@ public class DHT11 implements Thermometer {
                 c = -c;
             }
             float f = c * 1.8f + 32;
-
+            System.out.println("Humidity = " + h + " Temperature = " + c + "(" + f + "f)");
             temp = f;
             humidity = h;
         } else {
-            System.out.println("Data not good, trying again");
-            new Thread() {
-                @Override
-                public void run() {
-                    try {
-                        Thread.sleep(retryDelay);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    updateTemp();
-                }
-            }.start();
+            System.out.println("Data not good, skip");
         }
 
     }
@@ -104,6 +96,22 @@ public class DHT11 implements Thermometer {
 
     public float getHumidity() {
         return humidity;
+    }
+
+    public int getPin() {
+        return pin;
+    }
+
+    public long getLastPoll() {
+        return lastPoll;
+    }
+
+    public long getRetryDelay() {
+        return retryDelay;
+    }
+
+    public void setRetryDelay(long retryDelay) {
+        this.retryDelay = retryDelay;
     }
 
     private boolean checkParity() {

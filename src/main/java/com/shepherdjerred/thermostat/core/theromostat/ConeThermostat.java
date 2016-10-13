@@ -3,43 +3,30 @@ package com.shepherdjerred.thermostat.core.theromostat;
 public class ConeThermostat implements Thermostat {
 
     private Mode mode;
-    private boolean on;
 
     public ConeThermostat() {
-        mode = Mode.COOL;
-        on = false;
+        mode = Mode.OFF;
     }
 
     public Mode getMode() {
         return mode;
     }
 
-    public boolean isOn() {
-        return on;
-    }
-
     public void setMode(Mode mode) {
-        this.mode = mode;
         System.out.println("Mode changed to " + mode.toString());
-        if (on)
-            updateThermostatSettings();
-    }
-
-    public void setOn(boolean on) {
-        System.out.println("On changed to " + on);
-        this.on = on;
+        this.mode = mode;
         updateThermostatSettings();
     }
 
+    // We do the physical stuff here, signaling the AC
     public void updateThermostatSettings() {
-        if (on) {
-            if (mode == Mode.HEAT) {
-                // Cooling off, heat on
-            } else {
-                // Cooling on, heat off
-            }
-        } else {
-            // Both off
+        switch (mode) {
+            case COOL:
+                break;
+            case HEAT:
+                break;
+            case OFF:
+                break;
         }
     }
 
