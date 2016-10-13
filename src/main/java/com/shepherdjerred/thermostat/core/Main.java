@@ -2,17 +2,16 @@ package com.shepherdjerred.thermostat.core;
 
 import com.shepherdjerred.thermostat.core.pi.GpioWrapper;
 import com.shepherdjerred.thermostat.core.scheduling.Scheduler;
-import com.shepherdjerred.thermostat.core.thermometer.Thermometer;
-import com.shepherdjerred.thermostat.core.theromostat.DormThermostat;
+import com.shepherdjerred.thermostat.core.thermometer.DHT11;
+import com.shepherdjerred.thermostat.core.theromostat.ConeThermostat;
 
 public class Main {
 
-    static void main() {
-
-        new GpioWrapper();
-        new Controller(new DormThermostat(), new Thermometer(), new Scheduler(70));
+    public static void main(String[] args) {
 
         System.out.println("Program started!");
+        new GpioWrapper();
+        new Controller(new ConeThermostat(), new DHT11(), new Scheduler(74));
 
         /*
         Updating the temperature

@@ -8,7 +8,7 @@ public class Controller {
 
     private boolean enabled = true;
     private int tolerance = 3;
-    private int updatePeriod = 1000;
+    private long updatePeriod = 1500;
     private int targetTemp;
     private Thermostat thermostat;
     private Thermometer thermometer;
@@ -19,6 +19,8 @@ public class Controller {
         this.thermometer = thermometer;
         this.scheduler = scheduler;
         targetTemp = scheduler.getDefaultTemp();
+        thermometer.enable();
+        thermostat.setOn(false);
         runTempLoop();
     }
 
@@ -27,18 +29,22 @@ public class Controller {
             public void run() {
                 while (enabled) {
                     thermometer.updateTemp();
-                    if (thermometer.getTemp() < (targetTemp - tolerance) && thermometer.getTemp() > (targetTemp + tolerance)) {
+                    if (thermometer.getTemp() < (targetTemp - tolerance) || thermometer.getTemp() > (targetTemp + tolerance)) {
                         if (thermometer.getTemp() < targetTemp) {
-                            thermostat.setMode(Thermostat.Mode.HEAT);
-                            thermostat.setOn(true);
+                            if (thermostat.getMode() != Thermostat.Mode.HEAT || !thermostat.isOn()) {
+                                thermostat.setMode(Thermostat.Mode.HEAT);
+                                thermostat.setOn(true);
+                            }
                         } else {
-                            thermostat.setMode(Thermostat.Mode.COOL);
-                            thermostat.setOn(true);
+                            if (thermostat.getMode() != Thermostat.Mode.COOL || !thermostat.isOn()) {
+                                thermostat.setMode(Thermostat.Mode.COOL);
+                                thermostat.setOn(true);
+                            }
                         }
                         // Wait 5 minutes before checking temperature again
                         // We should do a dynamic wait depending on the difference between the current & desired temps
                         try {
-                            Thread.sleep(1000 * 5);
+                            Thread.sleep(updatePeriod);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }

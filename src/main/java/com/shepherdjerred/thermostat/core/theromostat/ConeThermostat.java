@@ -1,15 +1,21 @@
 package com.shepherdjerred.thermostat.core.theromostat;
 
-import com.shepherdjerred.thermostat.core.pi.GpioWrapper;
-
-public class DormThermostat implements Thermostat {
+public class ConeThermostat implements Thermostat {
 
     private Mode mode;
     private boolean on;
 
-    public DormThermostat() {
+    public ConeThermostat() {
         mode = Mode.COOL;
         on = false;
+    }
+
+    public Mode getMode() {
+        return mode;
+    }
+
+    public boolean isOn() {
+        return on;
     }
 
     public void setMode(Mode mode) {
@@ -28,15 +34,12 @@ public class DormThermostat implements Thermostat {
     public void updateThermostatSettings() {
         if (on) {
             if (mode == Mode.HEAT) {
-                GpioWrapper.getCooling().low();
-                GpioWrapper.getHeating().high();
+                // Cooling off, heat on
             } else {
-                GpioWrapper.getHeating().low();
-                GpioWrapper.getCooling().high();
+                // Cooling on, heat off
             }
         } else {
-            GpioWrapper.getHeating().low();
-            GpioWrapper.getCooling().low();
+            // Both off
         }
     }
 
