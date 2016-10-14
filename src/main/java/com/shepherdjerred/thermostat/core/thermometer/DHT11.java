@@ -20,6 +20,7 @@ public class DHT11 implements Thermometer {
     private int[] dht11_dat = {0, 0, 0, 0, 0};
 
     public DHT11(int pin, long retryDelay) {
+        temp = 600;
         this.pin = pin;
         this.retryDelay = retryDelay;
         enable();

@@ -69,6 +69,7 @@ public class Main {
         try {
             System.out.println("Saving log to output.log");
             fh = new FileHandler("output.log");
+            logger.setUseParentHandlers(false);
             logger.addHandler(fh);
             SimpleFormatter formatter = new SimpleFormatter();
             fh.setFormatter(formatter);

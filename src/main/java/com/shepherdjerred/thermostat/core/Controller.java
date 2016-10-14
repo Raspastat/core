@@ -31,7 +31,7 @@ public class Controller {
 
                     thermometer.updateTemp();
 
-                    if (Math.abs((thermometer.getTemp() - targetTemp)) > tolerance) {
+                    if (thermometer.getTemp() != 600 && Math.abs((thermometer.getTemp() - targetTemp)) > tolerance && thermometer.getTemp() != targetTemp) {
                         if (thermometer.getTemp() > targetTemp) {
                             // It's too hot
                             if (thermostat.getMode() != Thermostat.Mode.COOL)

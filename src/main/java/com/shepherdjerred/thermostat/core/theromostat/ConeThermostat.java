@@ -15,7 +15,7 @@ public class ConeThermostat implements Thermostat {
     }
 
     public void setMode(Mode mode) {
-        Main.getLogger().info("Mode changed to " + mode.toString());
+        Main.getLogger().info("\n\n" + "Mode changed to " + mode.toString() + "\n");
         this.mode = mode;
         updateThermostatSettings();
     }
