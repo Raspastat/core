@@ -18,16 +18,16 @@ public class Cli {
                 Main.stop();
                 break;
             case "status":
-                System.out.println("CURRENT STATUS\n");
-                System.out.println("Target Temp: " + Main.getController().getTargetTemp());
-                System.out.println("Current Temp: " + Main.getController().getThermometer().getTemp());
-                System.out.println("Current Humidity: " + Main.getController().getThermometer().getHumidity());
+                System.out.println("\n\nCURRENT STATUS\n");
+                System.out.println("Target Temp: " + Main.getController().getTargetTemp() + "F");
+                System.out.println("Current Temp: " + Main.getController().getThermometer().getTemp() + "F");
+                System.out.println("Current Humidity: " + Main.getController().getThermometer().getHumidity() + "%");
                 System.out.println("Mode: " + Main.getController().getThermostat().getMode().toString());
-                System.out.println("\n");
+                System.out.println("");
                 System.out.println("Enabled: " + Main.getController().isEnabled());
-                System.out.println("Tolerance: " + Main.getController().getTolerance());
-                System.out.println("Update Period: " + Main.getController().getUpdatePeriod());
-                System.out.println("Retry Delay: " + Main.getController().getThermometer().getRetryDelay());
+                System.out.println("Tolerance: " + Main.getController().getTolerance() + "F");
+                System.out.println("Update Period: " + Main.getController().getUpdatePeriod() + "ms");
+                System.out.println("Retry Delay: " + Main.getController().getThermometer().getRetryDelay() + "ms");
                 break;
             case "tolerance":
                 int tolerance;
@@ -36,7 +36,7 @@ public class Cli {
                 else
                     tolerance = Integer.valueOf(argument);
                 Main.getController().setTolerance(tolerance);
-                System.out.println("Tolerance set to " + argument);
+                System.out.println("Tolerance set to " + argument + "F");
                 break;
             case "period":
                 long period;
@@ -45,7 +45,7 @@ public class Cli {
                 else
                     period = Long.valueOf(argument);
                 Main.getController().setUpdatePeriod(period);
-                System.out.println("Update period set to " + period);
+                System.out.println("Update period set to " + period + "ms");
                 break;
             case "delay":
                 long delay;
@@ -54,7 +54,7 @@ public class Cli {
                 else
                     delay = Long.valueOf(argument);
                 Main.getController().setUpdatePeriod(delay);
-                System.out.println("Retry delay set to " + delay);
+                System.out.println("Retry delay set to " + delay + "ms");
                 break;
             case "temp":
                 int temp;
@@ -63,7 +63,7 @@ public class Cli {
                 else
                     temp = Integer.valueOf(argument);
                 Main.getController().setTargetTemp(temp);
-                System.out.println("Target temperature set to " + temp);
+                System.out.println("Target temperature set to " + temp + "F");
                 break;
             case "enabled":
                 boolean enabled;
