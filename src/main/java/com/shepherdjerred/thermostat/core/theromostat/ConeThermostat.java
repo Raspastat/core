@@ -1,5 +1,7 @@
 package com.shepherdjerred.thermostat.core.theromostat;
 
+import com.shepherdjerred.thermostat.core.Main;
+
 public class ConeThermostat implements Thermostat {
 
     private Mode mode;
@@ -13,7 +15,7 @@ public class ConeThermostat implements Thermostat {
     }
 
     public void setMode(Mode mode) {
-        System.out.println("Mode changed to " + mode.toString());
+        Main.getLogger().info("Mode changed to " + mode.toString());
         this.mode = mode;
         updateThermostatSettings();
     }

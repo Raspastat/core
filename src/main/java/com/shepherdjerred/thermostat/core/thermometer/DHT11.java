@@ -2,6 +2,7 @@ package com.shepherdjerred.thermostat.core.thermometer;
 
 import com.pi4j.wiringpi.Gpio;
 import com.pi4j.wiringpi.GpioUtil;
+import com.shepherdjerred.thermostat.core.Main;
 
 /**
  * Based off of
@@ -10,12 +11,12 @@ import com.pi4j.wiringpi.GpioUtil;
 
 public class DHT11 implements Thermometer {
 
+    private static final int MAXTIMINGS = 85;
     private int pin;
     private long retryDelay;
     private float temp;
     private float humidity;
     private long lastPoll;
-    private static final int MAXTIMINGS = 85;
     private int[] dht11_dat = {0, 0, 0, 0, 0};
 
     public DHT11(int pin, long retryDelay) {
@@ -81,11 +82,11 @@ public class DHT11 implements Thermometer {
                 c = -c;
             }
             float f = c * 1.8f + 32;
-            System.out.println("Humidity = " + h + " Temperature = " + c + "(" + f + "f)");
+            Main.getLogger().info("Humidity = " + h + " Temperature = " + c + "(" + f + "f)");
             temp = f;
             humidity = h;
         } else {
-            System.out.println("Data not good, skip");
+            Main.getLogger().info("Data not good, skip");
         }
 
     }
