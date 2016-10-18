@@ -22,7 +22,7 @@ public class Logger {
         }
     }
 
-    public java.util.logging.Logger getLogger() {
+    public static java.util.logging.Logger getLogger() {
         return logger;
     }
 

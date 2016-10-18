@@ -2,7 +2,9 @@ package com.shepherdjerred.thermostat.core.thermometer;
 
 import com.pi4j.wiringpi.Gpio;
 import com.pi4j.wiringpi.GpioUtil;
+import com.shepherdjerred.thermostat.core.Logger;
 import com.shepherdjerred.thermostat.core.Main;
+import com.shepherdjerred.thermostat.core.redis.JedisManager;
 
 public class DHT11 implements Thermometer {
 
@@ -82,11 +84,12 @@ public class DHT11 implements Thermometer {
                 c = -c;
             }
             float f = c * 1.8f + 32;
-            Main.getLogger().info("Humidity = " + h + " Temperature = " + c + "(" + f + "f)");
+            Logger.getLogger().info("Humidity = " + h + " Temperature = " + c + "(" + f + "f)");
             temp = f;
             humidity = h;
+            JedisManager.getJedisManager().updateStatus();
         } else {
-            Main.getLogger().info("Data not good, skip");
+            Logger.getLogger().info("Data not good, skip");
         }
 
     }

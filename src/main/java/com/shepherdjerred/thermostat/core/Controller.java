@@ -1,5 +1,6 @@
 package com.shepherdjerred.thermostat.core;
 
+import com.shepherdjerred.thermostat.core.redis.JedisManager;
 import com.shepherdjerred.thermostat.core.scheduling.Scheduler;
 import com.shepherdjerred.thermostat.core.thermometer.DHT11;
 import com.shepherdjerred.thermostat.core.thermometer.Thermometer;
@@ -82,6 +83,7 @@ public class Controller {
         this.enabled = enabled;
         if (enabled)
             runTempLoop();
+        JedisManager.getJedisManager().updateStatus();
     }
 
     public int getTolerance() {
@@ -90,6 +92,7 @@ public class Controller {
 
     public void setTolerance(int tolerance) {
         this.tolerance = tolerance;
+        JedisManager.getJedisManager().updateStatus();
     }
 
     public long getUpdatePeriod() {
@@ -98,6 +101,7 @@ public class Controller {
 
     public void setUpdatePeriod(long updatePeriod) {
         this.updatePeriod = updatePeriod;
+        JedisManager.getJedisManager().updateStatus();
     }
 
     public float getTargetTemp() {
@@ -106,6 +110,7 @@ public class Controller {
 
     public void setTargetTemp(float targetTemp) {
         this.targetTemp = targetTemp;
+        JedisManager.getJedisManager().updateStatus();
     }
 
     public Thermostat getThermostat() {

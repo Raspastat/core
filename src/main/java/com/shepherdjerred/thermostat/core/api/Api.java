@@ -1,36 +1,25 @@
 package com.shepherdjerred.thermostat.core.api;
 
-import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
+import com.shepherdjerred.thermostat.core.Controller;
+import com.shepherdjerred.thermostat.core.users.User;
 
 public class Api {
 
-    private int port;
-    private boolean enabled;
-    private ServerSocket serverSocket;
-
-    public Api(int port) {
-        try {
-            serverSocket = new ServerSocket(port);
-            enabled = true;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    // TODO Log the users action
+    public static void setTemperature(User user, int temp) {
+        Controller.getController().setTargetTemp(temp);
     }
 
-    public void listen() {
-        while (enabled) {
-            try {
-                Socket clientSocket = serverSocket.accept();
-                new ApiThread(clientSocket).run();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+    public static void setTolerance(User user, int tolerance) {
+        Controller.getController().setTolerance(tolerance);
     }
 
-    public boolean isEnabled() {
-        return enabled;
+    public static void setPeriod(User user, int period) {
+        Controller.getController().setUpdatePeriod(period);
     }
+
+    public static void setEnabled(User user, boolean enabled) {
+        Controller.getController().setEnabled(enabled);
+    }
+
 }

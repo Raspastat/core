@@ -1,6 +1,7 @@
 package com.shepherdjerred.thermostat.core.theromostat;
 
-import com.shepherdjerred.thermostat.core.Main;
+import com.shepherdjerred.thermostat.core.Logger;
+import com.shepherdjerred.thermostat.core.redis.JedisManager;
 
 public class ConeThermostat implements Thermostat {
 
@@ -15,9 +16,10 @@ public class ConeThermostat implements Thermostat {
     }
 
     public void setMode(Mode mode) {
-        Main.getLogger().info("\n\n" + "Mode changed to " + mode.toString() + "\n");
+        Logger.getLogger().info("\n\n" + "Mode changed to " + mode.toString() + "\n");
         this.mode = mode;
         updateThermostatSettings();
+        JedisManager.getJedisManager().updateStatus();
     }
 
     // We do the physical stuff here, signaling the AC
