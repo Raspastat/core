@@ -1,10 +1,14 @@
 package com.shepherdjerred.thermostat.core;
 
 import com.shepherdjerred.thermostat.core.scheduling.Scheduler;
+import com.shepherdjerred.thermostat.core.thermometer.DHT11;
 import com.shepherdjerred.thermostat.core.thermometer.Thermometer;
+import com.shepherdjerred.thermostat.core.theromostat.ConeThermostat;
 import com.shepherdjerred.thermostat.core.theromostat.Thermostat;
 
 public class Controller {
+
+    private static Controller controller = new Controller(new ConeThermostat(), new DHT11(3, 500), new Scheduler(73));
 
     private boolean enabled;
     private int tolerance;
@@ -22,6 +26,10 @@ public class Controller {
         this.tolerance = 2;
         this.updatePeriod = 1500;
         setEnabled(true);
+    }
+
+    public static Controller getController() {
+        return controller;
     }
 
     private void runTempLoop() {

@@ -4,11 +4,6 @@ import com.pi4j.wiringpi.Gpio;
 import com.pi4j.wiringpi.GpioUtil;
 import com.shepherdjerred.thermostat.core.Main;
 
-/**
- * Based off of
- * http://stackoverflow.com/questions/28486159/read-temperature-from-dht11-using-pi4j/34976602#34976602
- */
-
 public class DHT11 implements Thermometer {
 
     private static final int MAXTIMINGS = 85;
@@ -30,6 +25,10 @@ public class DHT11 implements Thermometer {
         GpioUtil.export(3, GpioUtil.DIRECTION_OUT);
     }
 
+    /**
+     * Based off of
+     * http://stackoverflow.com/questions/28486159/read-temperature-from-dht11-using-pi4j/34976602#34976602
+     */
     public void updateTemp() {
         int laststate = Gpio.HIGH;
         int j = 0;
