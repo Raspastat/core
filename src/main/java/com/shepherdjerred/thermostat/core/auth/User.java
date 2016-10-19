@@ -1,4 +1,4 @@
-package com.shepherdjerred.thermostat.core.users;
+package com.shepherdjerred.thermostat.core.auth;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -2,9 +2,13 @@ package com.shepherdjerred.thermostat.core.thermometer;
 
 import com.pi4j.wiringpi.Gpio;
 import com.pi4j.wiringpi.GpioUtil;
-import com.shepherdjerred.thermostat.core.Logger;
 import com.shepherdjerred.thermostat.core.Main;
 import com.shepherdjerred.thermostat.core.redis.JedisManager;
+
+/**
+ * Based off of
+ * http://stackoverflow.com/questions/28486159/read-temperature-from-dht11-using-pi4j/34976602#34976602
+ */
 
 public class DHT11 implements Thermometer {
 
@@ -27,10 +31,6 @@ public class DHT11 implements Thermometer {
         GpioUtil.export(3, GpioUtil.DIRECTION_OUT);
     }
 
-    /**
-     * Based off of
-     * http://stackoverflow.com/questions/28486159/read-temperature-from-dht11-using-pi4j/34976602#34976602
-     */
     public void updateTemp() {
         int laststate = Gpio.HIGH;
         int j = 0;
@@ -84,12 +84,12 @@ public class DHT11 implements Thermometer {
                 c = -c;
             }
             float f = c * 1.8f + 32;
-            Logger.getLogger().info("Humidity = " + h + " Temperature = " + c + "(" + f + "f)");
+            Main.getLogger().info("Humidity = " + h + " Temperature = " + c + "(" + f + "f)");
+            JedisManager.getJedisManager().updateStatus();
             temp = f;
             humidity = h;
-            JedisManager.getJedisManager().updateStatus();
         } else {
-            Logger.getLogger().info("Data not good, skip");
+            Main.getLogger().info("Data not good, skip");
         }
 
     }

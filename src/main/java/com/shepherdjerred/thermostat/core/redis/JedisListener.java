@@ -1,7 +1,7 @@
 package com.shepherdjerred.thermostat.core.redis;
 
 import com.shepherdjerred.thermostat.core.api.Api;
-import com.shepherdjerred.thermostat.core.users.User;
+import com.shepherdjerred.thermostat.core.auth.User;
 import redis.clients.jedis.JedisPubSub;
 
 import java.util.UUID;

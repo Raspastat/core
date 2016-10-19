@@ -1,6 +1,5 @@
 package com.shepherdjerred.thermostat.core.scheduling;
 
-import com.shepherdjerred.thermostat.core.Logger;
 import com.shepherdjerred.thermostat.core.Main;
 
 import java.util.LinkedList;
@@ -14,7 +13,7 @@ public class Scheduler {
     public Scheduler(int defaultTemp) {
         this.defaultTemp = defaultTemp;
         loadEntries();
-        Logger.getLogger().info("Default temp is " + defaultTemp);
+        Main.getLogger().info("Default temp is " + defaultTemp);
     }
 
     public int getDefaultTemp() {
