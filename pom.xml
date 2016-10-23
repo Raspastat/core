@@ -57,15 +57,6 @@
                         <goals>
                             <goal>shade</goal>
                         </goals>
-                        <configuration>
-                            <artifactSet>
-                                <includes>
-                                    <include>com.pi4j:pi4j-core</include>
-                                    <include>org.apache.commons:commons-lang3</include>
-                                    <include>redis.clients:jedis</include>
-                                </includes>
-                            </artifactSet>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>

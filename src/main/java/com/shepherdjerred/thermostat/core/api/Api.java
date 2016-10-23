@@ -1,6 +1,5 @@
 package com.shepherdjerred.thermostat.core.api;
 
-import com.shepherdjerred.thermostat.core.Controller;
 import com.shepherdjerred.thermostat.core.Main;
 import com.shepherdjerred.thermostat.core.auth.User;
 

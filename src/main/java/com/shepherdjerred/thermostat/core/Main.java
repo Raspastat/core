@@ -5,10 +5,9 @@ import com.shepherdjerred.thermostat.core.pi.GpioWrapper;
 import com.shepherdjerred.thermostat.core.redis.JedisManager;
 import com.shepherdjerred.thermostat.core.scheduling.Scheduler;
 import com.shepherdjerred.thermostat.core.thermometer.DHT11;
-import com.shepherdjerred.thermostat.core.theromostat.ConeThermostat;
+import com.shepherdjerred.thermostat.core.theromostat.LR27935;
 
 import java.io.IOException;
-import java.util.jar.Pack200;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
@@ -26,6 +25,7 @@ public class Main {
         setupCli();
         setupLogging();
         init();
+        System.out.println("Loading complete!");
     }
 
     private static void setupCli() {
@@ -60,7 +60,7 @@ public class Main {
 
     private static void init() {
         gpioWrapper = new GpioWrapper();
-        controller = new Controller(new ConeThermostat(), new DHT11(3, 500), new Scheduler(73));
+        controller = new Controller(new LR27935(), new DHT11(3, 500), new Scheduler(73));
     }
 
     public static void stop() {

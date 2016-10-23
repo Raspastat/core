@@ -32,6 +32,7 @@ public class DHT11 implements Thermometer {
     }
 
     public void updateTemp() {
+        Main.getLogger().info("Updating temp");
         int laststate = Gpio.HIGH;
         int j = 0;
         dht11_dat[0] = dht11_dat[1] = dht11_dat[2] = dht11_dat[3] = dht11_dat[4] = 0;
@@ -85,7 +86,7 @@ public class DHT11 implements Thermometer {
             }
             float f = c * 1.8f + 32;
             Main.getLogger().info("Humidity = " + h + " Temperature = " + c + "(" + f + "f)");
-            JedisManager.getJedisManager().updateStatus();
+            //JedisManager.getJedisManager().updateStatus();
             temp = f;
             humidity = h;
         } else {
