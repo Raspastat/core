@@ -30,37 +30,55 @@ public class LR27935 implements Thermostat {
     }
 
     // We do the physical stuff here, signaling the AC
+    /*
+    Pin 3 = Thermometer
+    Pin 4 = Green
+    Pin 5 = Yellow
+    Pin 6 = Orange
+     */
     public void updateThermostatSettings() {
         switch (mode) {
             case COOL:
-                // Heat needs to be low
-                GpioUtil.export(5, GpioUtil.DIRECTION_OUT);
-                Gpio.pinMode(5, Gpio.OUTPUT);
-                Gpio.digitalWrite(5, Gpio.LOW);
-                // Cool needs to be high
+                // G needs to be high
                 GpioUtil.export(4, GpioUtil.DIRECTION_OUT);
                 Gpio.pinMode(4, Gpio.OUTPUT);
                 Gpio.digitalWrite(4, Gpio.HIGH);
-                break;
-            case HEAT:
-                // Cool needs to be low
-                GpioUtil.export(4, GpioUtil.DIRECTION_OUT);
-                Gpio.pinMode(4, Gpio.OUTPUT);
-                Gpio.digitalWrite(4, Gpio.LOW);
-                // Heat needs to be high
+                // Y needs to be high
                 GpioUtil.export(5, GpioUtil.DIRECTION_OUT);
                 Gpio.pinMode(5, Gpio.OUTPUT);
                 Gpio.digitalWrite(5, Gpio.HIGH);
+                // O needs to be high
+                GpioUtil.export(6, GpioUtil.DIRECTION_OUT);
+                Gpio.pinMode(6, Gpio.OUTPUT);
+                Gpio.digitalWrite(6, Gpio.HIGH);
+                break;
+            case HEAT:
+                // G needs to be high
+                GpioUtil.export(4, GpioUtil.DIRECTION_OUT);
+                Gpio.pinMode(4, Gpio.OUTPUT);
+                Gpio.digitalWrite(4, Gpio.HIGH);
+                // Y needs to be high
+                GpioUtil.export(5, GpioUtil.DIRECTION_OUT);
+                Gpio.pinMode(5, Gpio.OUTPUT);
+                Gpio.digitalWrite(5, Gpio.HIGH);
+                // O needs to be high
+                GpioUtil.export(6, GpioUtil.DIRECTION_OUT);
+                Gpio.pinMode(6, Gpio.OUTPUT);
+                Gpio.digitalWrite(6, Gpio.LOW);
                 break;
             case OFF:
-                // Cool needs to be low
+                // G needs to be low
                 GpioUtil.export(4, GpioUtil.DIRECTION_OUT);
                 Gpio.pinMode(4, Gpio.OUTPUT);
                 Gpio.digitalWrite(4, Gpio.LOW);
-                // Heat needs to be low
+                // Y needs to be low
                 GpioUtil.export(5, GpioUtil.DIRECTION_OUT);
                 Gpio.pinMode(5, Gpio.OUTPUT);
                 Gpio.digitalWrite(5, Gpio.LOW);
+                // O needs to be low
+                GpioUtil.export(6, GpioUtil.DIRECTION_OUT);
+                Gpio.pinMode(6, Gpio.OUTPUT);
+                Gpio.digitalWrite(6, Gpio.LOW);
         }
     }
 
