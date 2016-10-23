@@ -34,7 +34,7 @@ public class LR27935 implements Thermostat {
     Pin 3 = Thermometer
     Pin 4 = Green
     Pin 5 = Yellow
-    Pin 6 = Orange
+    Pin 27 = Orange
      */
     public void updateThermostatSettings() {
         switch (mode) {
@@ -48,9 +48,9 @@ public class LR27935 implements Thermostat {
                 Gpio.pinMode(5, Gpio.OUTPUT);
                 Gpio.digitalWrite(5, Gpio.HIGH);
                 // O needs to be high
-                GpioUtil.export(6, GpioUtil.DIRECTION_OUT);
-                Gpio.pinMode(6, Gpio.OUTPUT);
-                Gpio.digitalWrite(6, Gpio.HIGH);
+                GpioUtil.export(27, GpioUtil.DIRECTION_OUT);
+                Gpio.pinMode(27, Gpio.OUTPUT);
+                Gpio.digitalWrite(27, Gpio.HIGH);
                 break;
             case HEAT:
                 // G needs to be high
@@ -62,9 +62,9 @@ public class LR27935 implements Thermostat {
                 Gpio.pinMode(5, Gpio.OUTPUT);
                 Gpio.digitalWrite(5, Gpio.HIGH);
                 // O needs to be high
-                GpioUtil.export(6, GpioUtil.DIRECTION_OUT);
-                Gpio.pinMode(6, Gpio.OUTPUT);
-                Gpio.digitalWrite(6, Gpio.LOW);
+                GpioUtil.export(27, GpioUtil.DIRECTION_OUT);
+                Gpio.pinMode(27, Gpio.OUTPUT);
+                Gpio.digitalWrite(27, Gpio.LOW);
                 break;
             case OFF:
                 // G needs to be low
@@ -76,9 +76,9 @@ public class LR27935 implements Thermostat {
                 Gpio.pinMode(5, Gpio.OUTPUT);
                 Gpio.digitalWrite(5, Gpio.LOW);
                 // O needs to be low
-                GpioUtil.export(6, GpioUtil.DIRECTION_OUT);
-                Gpio.pinMode(6, Gpio.OUTPUT);
-                Gpio.digitalWrite(6, Gpio.LOW);
+                GpioUtil.export(27, GpioUtil.DIRECTION_OUT);
+                Gpio.pinMode(27, Gpio.OUTPUT);
+                Gpio.digitalWrite(27, Gpio.LOW);
         }
     }
 
