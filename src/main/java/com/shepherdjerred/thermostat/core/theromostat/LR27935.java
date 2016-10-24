@@ -42,43 +42,43 @@ public class LR27935 implements Thermostat {
                 // G needs to be high
                 GpioUtil.export(4, GpioUtil.DIRECTION_OUT);
                 Gpio.pinMode(4, Gpio.OUTPUT);
-                Gpio.digitalWrite(4, Gpio.HIGH);
+                Gpio.digitalWrite(4, Gpio.LOW);
                 // Y needs to be high
                 GpioUtil.export(5, GpioUtil.DIRECTION_OUT);
                 Gpio.pinMode(5, Gpio.OUTPUT);
-                Gpio.digitalWrite(5, Gpio.HIGH);
-                // O needs to be high
-                GpioUtil.export(27, GpioUtil.DIRECTION_OUT);
-                Gpio.pinMode(27, Gpio.OUTPUT);
-                Gpio.digitalWrite(27, Gpio.HIGH);
-                break;
-            case HEAT:
-                // G needs to be high
-                GpioUtil.export(4, GpioUtil.DIRECTION_OUT);
-                Gpio.pinMode(4, Gpio.OUTPUT);
-                Gpio.digitalWrite(4, Gpio.HIGH);
-                // Y needs to be high
-                GpioUtil.export(5, GpioUtil.DIRECTION_OUT);
-                Gpio.pinMode(5, Gpio.OUTPUT);
-                Gpio.digitalWrite(5, Gpio.HIGH);
+                Gpio.digitalWrite(5, Gpio.LOW);
                 // O needs to be high
                 GpioUtil.export(27, GpioUtil.DIRECTION_OUT);
                 Gpio.pinMode(27, Gpio.OUTPUT);
                 Gpio.digitalWrite(27, Gpio.LOW);
                 break;
-            case OFF:
-                // G needs to be low
+            case HEAT:
+                // G needs to be high
                 GpioUtil.export(4, GpioUtil.DIRECTION_OUT);
                 Gpio.pinMode(4, Gpio.OUTPUT);
                 Gpio.digitalWrite(4, Gpio.LOW);
-                // Y needs to be low
+                // Y needs to be high
                 GpioUtil.export(5, GpioUtil.DIRECTION_OUT);
                 Gpio.pinMode(5, Gpio.OUTPUT);
                 Gpio.digitalWrite(5, Gpio.LOW);
                 // O needs to be low
                 GpioUtil.export(27, GpioUtil.DIRECTION_OUT);
                 Gpio.pinMode(27, Gpio.OUTPUT);
-                Gpio.digitalWrite(27, Gpio.LOW);
+                Gpio.digitalWrite(27, Gpio.HIGH);
+                break;
+            case OFF:
+                // G needs to be low
+                GpioUtil.export(4, GpioUtil.DIRECTION_OUT);
+                Gpio.pinMode(4, Gpio.OUTPUT);
+                Gpio.digitalWrite(4, Gpio.HIGH);
+                // Y needs to be low
+                GpioUtil.export(5, GpioUtil.DIRECTION_OUT);
+                Gpio.pinMode(5, Gpio.OUTPUT);
+                Gpio.digitalWrite(5, Gpio.HIGH);
+                // O needs to be low
+                GpioUtil.export(27, GpioUtil.DIRECTION_OUT);
+                Gpio.pinMode(27, Gpio.OUTPUT);
+                Gpio.digitalWrite(27, Gpio.HIGH);
         }
     }
 

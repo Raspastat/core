@@ -42,19 +42,15 @@ public class Controller {
                             if (thermostat.getMode() != Thermostat.Mode.HEAT)
                                 thermostat.setMode(Thermostat.Mode.HEAT);
                         }
-
                         try {
                             Thread.sleep(updatePeriod);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-
                     } else {
-
                         // The temperature is fine for now, turn it off, and check back after some time
                         if (thermostat.getMode() != Thermostat.Mode.OFF)
                             thermostat.setMode(Thermostat.Mode.OFF);
-
                         try {
                             Thread.sleep(updatePeriod);
                         } catch (InterruptedException e) {
