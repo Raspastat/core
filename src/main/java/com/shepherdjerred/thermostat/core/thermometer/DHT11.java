@@ -86,7 +86,7 @@ public class DHT11 implements Thermometer {
             }
             float f = c * 1.8f + 32;
             Main.getLogger().info("Humidity = " + h + " Temperature = " + c + "(" + f + "f)");
-            //JedisManager.getJedisManager().updateStatus();
+            JedisManager.getJedisManager().updateStatus();
             temp = f;
             humidity = h;
         } else {

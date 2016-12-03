@@ -60,7 +60,7 @@ public class Main {
 
     private static void init() {
         gpioWrapper = new GpioWrapper();
-        controller = new Controller(new LR27935(), new DHT11(3, 500), new Scheduler(73));
+        controller = new Controller(new LR27935(), new DHT11(3, 500), new Scheduler(70));
     }
 
     public static void stop() {

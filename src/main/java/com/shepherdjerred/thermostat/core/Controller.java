@@ -52,7 +52,8 @@ public class Controller {
                         if (thermostat.getMode() != Thermostat.Mode.OFF)
                             thermostat.setMode(Thermostat.Mode.OFF);
                         try {
-                            Thread.sleep(updatePeriod);
+                            // We'll wait 3 minutes after turning off before turning on again.
+                            Thread.sleep(3000);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
