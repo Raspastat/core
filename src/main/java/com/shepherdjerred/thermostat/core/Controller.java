@@ -53,7 +53,7 @@ public class Controller {
                             thermostat.setMode(Thermostat.Mode.OFF);
                         try {
                             // We'll wait 3 minutes after turning off before turning on again.
-                            Thread.sleep(3000);
+                            Thread.sleep(180000);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
